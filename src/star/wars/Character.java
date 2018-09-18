@@ -98,9 +98,20 @@ public class Character {
         move(dx, dy);
     }
     public void reverseX() {
-        //TODO Implement this method
-    }
+        if (1200 <= x){
+            setDX(-1);
+        }
+        if (0>= x){
+            setDX(1);
+        }        //TODO Implement this method
+     }
     public void reverseY() {
+         if (960 <= y){
+            setDY(-1);
+        }
+        if (0>=y){
+            setDY(1);
+        }
         //TODO Implement this method
     } 
     //Private Methods

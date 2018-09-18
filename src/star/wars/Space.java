@@ -37,14 +37,18 @@ public class Space extends JPanel {
       public void paintComponent(Graphics g){
          super.paintComponent(g);
          this.setBackground(Color.BLACK);
+         
          g.setColor(Color.WHITE);
          drawStars(g);
+         
          hero.draw(g);
          enemy.draw(g);
          }
       private class ScheduleTask extends TimerTask { 
           @Override
           public void run (){
+          wallCollissions(hero);
+          wallCollissions(enemy);
           hero.update();
           enemy.update();
           repaint();
@@ -79,13 +83,38 @@ public class Space extends JPanel {
     }
         /*this.setBackground(new Color (19, 14, 47, 1));
         g.setColor(new Color (237, 233, 227, 1));*/
-       private void drawStars(Graphics g){
-           for (int i = 0; i < 1000; i++){
-         int numsPulledX = (int)(Math.random()* 1200.0);
-          int numsPulledY = (int)(Math.random()* 960.0);
-          int sizeRand = (int)(Math.random()*5);
-          g.fillOval(numsPulledX, numsPulledY, sizeRand, sizeRand);
-             
-          } 
-      }
+      private void drawStars(Graphics g) {
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < 1000; i++) {
+          y = (int) (Math.random()*960);
+          x = (int) (Math.random()*1200);
+          Color curr = g.getColor();
+          if (x % 2 == 0) 
+              g.setColor(curr.brighter());
+          else
+              g.setColor(curr.darker());
+          g.fillOval(x, y, 3, 3);
+          
+          System.out.println(x+" "+y);
+          //if ( x > 1100 || y > 860) {
+           //  break;
+          //}
+        }
+    }
+    
+    /**
+     * Makes the hero and enemy bounce off walls
+     */    
+    private void wallCollissions(Character c) {
+        //TODO Implement this method
+        //walls = this.getWidth(), this.getHeight()
+        //where is the hero = hero.getX() and hero.getY()
+        if (c.getX()< 0 || c.getX() +20 >= this.getWidth() ){
+            c.reverseX();
+        }
+        if (c.getY() <= 0 || c.getY() +20 >= this.getHeight()){
+            c.reverseY();
+        }
+    }
       }

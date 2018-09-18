@@ -23,7 +23,8 @@ public class Hero extends Character {
       health = 3;
      }
     public Hero (int x, int y){
-        super(x, y);
+        super();
+        health = 3;
     }
     // Getters
     public int getHealth (){

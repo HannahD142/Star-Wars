@@ -12,15 +12,17 @@ import java.awt.Color;
  * @author Hannah Dorris
  */
 public class Enemy extends Character {
-    public Enemy(int x, int y, Color color, int size, String name){
-        super (x, y, color, size, name);
-    }
     public Enemy (){
         super();
     }
-    public void move() { 
+    public Enemy (int x, int y, Color color, int size, String name){
+        super(x,y,color,size,name);
+    }
+    
+    @Override
+    public void update() {
         super.setDX( (int) (Math.random()*10) - 4 );
         super.setDY( (int) (Math.random()*10) - 4 );
-        super.update(); 
-    } 
+        super.update();
+    }
 }
