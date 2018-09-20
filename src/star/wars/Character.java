@@ -87,31 +87,34 @@ public class Character {
         g.fillRect(x, y, size, size);
     }
   
-    public void kill (){
-        grow();
+    public void kill (Character c){
+        c.setSize(0);
     }
     public void move (int dx, int dy){
-        x += dx*3;
-        y += dy*3;
+        x += dx*5;
+        y += dy*5;
     }
     public void update(){
         move(dx, dy);
     }
     public void reverseX() {
-        if (1200 <= x){
+        if (1200 >= x){
             setDX(-1);
         }
         if (0>= x){
             setDX(1);
-        }        //TODO Implement this method
+        }  
+        move(2*dx, dy);
+//TODO Implement this method
      }
     public void reverseY() {
-         if (960 <= y){
+        if (960 >= y){
             setDY(-1);
         }
         if (0>=y){
             setDY(1);
         }
+        move(dx, 2*dy);
         //TODO Implement this method
     } 
     //Private Methods
